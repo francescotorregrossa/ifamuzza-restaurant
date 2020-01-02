@@ -5,6 +5,9 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 public class LoginGUI extends JFrame{
+
+
+    
     
     //Componenti grafici
     private JLabel emailLabel = new JLabel("Email:");

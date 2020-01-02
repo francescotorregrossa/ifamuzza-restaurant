@@ -59,7 +59,7 @@ public class User {
     }
 
     public String getEmail(){
-        return id;
+        return email;
     }
 
     public void setEmail(String email){
@@ -87,7 +87,7 @@ public class User {
 
 
     public String getNome(){
-        return nome;
+        return name;
     }
 
     public void setNome(){
