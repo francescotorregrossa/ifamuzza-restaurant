@@ -1,3 +1,5 @@
+package com.ifamuzzarestaurant.model;
+
 import java.util.*;
 
 public class User {

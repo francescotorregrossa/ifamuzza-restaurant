@@ -1,3 +1,5 @@
+package com.ifamuzzarestaurant;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
