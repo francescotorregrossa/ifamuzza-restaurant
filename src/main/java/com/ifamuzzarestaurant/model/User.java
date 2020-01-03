@@ -1,6 +1,9 @@
 package com.ifamuzzarestaurant.model;
 
 import java.util.*;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class User {
     private Integer id;
@@ -53,7 +56,7 @@ public class User {
     */
 
     public Integer getId(){
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id ){
@@ -74,7 +77,7 @@ public class User {
     }
 
     public String getAccessToken(){
-        return accessToken;
+        return this.accessToken;
     }
 
     public void setAccessToken(String accessToken){
@@ -95,7 +98,7 @@ public class User {
     }
 
     public String getAddress(){
-        return address;
+        return this.address;
     }
 
     public void setAddress(String address){
@@ -108,7 +111,7 @@ public class User {
     }
 
     public String getPhoneNumber(){
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber){
