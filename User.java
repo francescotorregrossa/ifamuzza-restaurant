@@ -59,7 +59,7 @@ public class User {
     }
 
     public String getEmail(){
-        return id;
+        return this.email;
     }
 
     public void setEmail(String email){
@@ -84,19 +84,12 @@ public class User {
         }
     }
 
-
-
-    public String getNome(){
-        return nome;
+    public String getName(){
+        return this.name;
     }
 
-    public void setNome(){
-        if(accessToken.length()==0){
-            this.accessToken = null;
-        }
-        else{
-            this.accessToken = accessToken;
-        }
+    public void setName(String name){
+        this.name = name;
     }
 
     public String getAddress(){
