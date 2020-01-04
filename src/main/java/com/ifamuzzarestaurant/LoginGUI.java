@@ -6,6 +6,11 @@ import java.awt.event.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import com.ifamuzzarestaurant.model.Auth;
+import com.ifamuzzarestaurant.model.User;
+
+import org.apache.http.concurrent.FutureCallback;
+
 public class LoginGUI extends JFrame{
 
 
@@ -95,6 +100,20 @@ public class LoginGUI extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent event){
                 
+                userEmail = emailField.getText();
+                userPassword = sb.append(passwordField.getPassword()).toString();
+
+                Auth.getInstance().login(userEmail, userPassword, new FutureCallback<User>(){
+                
+                    @Override public void failed(Exception ex) { System.out.println("errore " + ex.getMessage()); }
+                    @Override public void cancelled() { System.out.println("cancellato");}
+                    @Override public void completed(User result) {
+                        System.out.println("risultato " + result);
+                    }
+                    
+                });
+
+                /*
                 if(stato == true){
                     userEmail = emailField.getText();
                     userPassword = sb.append(passwordField.getPassword()).toString();
@@ -109,6 +128,7 @@ public class LoginGUI extends JFrame{
                 }
 
                 stato = !stato;
+                */
 						
 			}
         });
