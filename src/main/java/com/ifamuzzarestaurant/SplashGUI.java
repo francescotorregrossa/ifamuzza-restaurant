@@ -18,6 +18,11 @@ public class SplashGUI extends JFrame {
         Container c = this.getContentPane();
         c.setLayout(null);
         
+        JProgressBar bar = new JProgressBar();
+        bar.setIndeterminate(true);
+        bar.setBounds(25,30,150,20);
+        c.add(bar);
+
         Auth.getInstance(new FutureCallback<Auth>() {
             
             @Override public void failed(Exception ex) { 
@@ -44,11 +49,11 @@ public class SplashGUI extends JFrame {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenWidth = (int) screenSize.getWidth();
-        screenWidth = (screenWidth/2)-240;
+        screenWidth = (screenWidth/2)-100;
         int screenHeigth = (int) screenSize.getHeight();
-        screenHeigth = (screenHeigth/2) - 135;
+        screenHeigth = (screenHeigth/2) - 50;
         this.setVisible(true);
-        this.setBounds(screenWidth,screenHeigth,480,270);
+        this.setBounds(screenWidth,screenHeigth,200,100);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
     }
