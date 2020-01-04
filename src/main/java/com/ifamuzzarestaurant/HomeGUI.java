@@ -6,6 +6,10 @@ import java.awt.event.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import com.ifamuzzarestaurant.model.Auth;
+
+import org.apache.http.concurrent.FutureCallback;
+
 public class HomeGUI extends JFrame {
 
     // componenti per pannello actionsPanel
@@ -156,11 +160,19 @@ public class HomeGUI extends JFrame {
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                c.removeAll();
-                c.add(actionsPanel, BorderLayout.WEST);
-                c.add(logoutPanel, BorderLayout.CENTER);
-                c.validate();
-                c.repaint();
+                
+                dispose();
+                Auth.getInstance().logout(new FutureCallback<Void>(){
+                    @Override public void failed(Exception ex) {
+                        SplashGUI s = new SplashGUI();
+                    }
+                    @Override public void completed(Void result) {
+                        SplashGUI s = new SplashGUI();
+                    }
+                    @Override public void cancelled() {
+                        SplashGUI s = new SplashGUI();
+                    }
+                });
             }
         });
 

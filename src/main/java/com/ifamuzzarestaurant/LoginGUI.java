@@ -108,7 +108,8 @@ public class LoginGUI extends JFrame{
                     @Override public void failed(Exception ex) { System.out.println("errore " + ex.getMessage()); }
                     @Override public void cancelled() { System.out.println("cancellato");}
                     @Override public void completed(User result) {
-                        System.out.println("risultato " + result);
+                        dispose();
+                        HomeGUI h = new HomeGUI();
                     }
                     
                 });

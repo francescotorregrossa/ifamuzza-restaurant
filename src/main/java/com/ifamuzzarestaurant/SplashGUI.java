@@ -14,7 +14,7 @@ import org.apache.http.concurrent.FutureCallback;
 public class SplashGUI extends JFrame {
 
     public SplashGUI() {
-        super("iFamuzza");
+        super("Caricamento");
         Container c = this.getContentPane();
         c.setLayout(null);
         
@@ -27,22 +27,17 @@ public class SplashGUI extends JFrame {
             
             @Override public void failed(Exception ex) { 
                 LoginGUI l = new LoginGUI();
-                dispose();
             }
             @Override public void cancelled() {
                 LoginGUI l = new LoginGUI();
-                dispose();
             }
             @Override public void completed(Auth result) {
-                
                 if (result.isLoggedIn()) {
                     HomeGUI h = new HomeGUI();
                 }
                 else {
                     LoginGUI l = new LoginGUI();
                 }
-                dispose();
-
             }
 
         });
@@ -56,6 +51,8 @@ public class SplashGUI extends JFrame {
         this.setBounds(screenWidth,screenHeigth,200,100);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
+
+        dispose();
     }
 
 }
