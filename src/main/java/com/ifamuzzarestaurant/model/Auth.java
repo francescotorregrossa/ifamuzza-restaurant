@@ -28,7 +28,7 @@ public class Auth {
     private final Preferences prefs = Preferences.userNodeForPackage(Auth.class);
     private final String ACCESS_TOKEN_NAME = "@ifamuzza:accesstoken";
 
-    private Auth() {
+    private Auth(FutureCallback<Auth> resultCallback) {
         httpClient.start();
 
         String accessToken = prefs.get(ACCESS_TOKEN_NAME, null);
@@ -40,8 +40,14 @@ public class Auth {
 
             httpClient.execute(get, new FutureCallback<HttpResponse>() {
 
-                @Override public void failed(final Exception ex) { System.out.println("Request failed. " + ex.getMessage()); }
-                @Override public void cancelled() { System.out.println("Request failed."); }
+                @Override public void failed(final Exception ex) { 
+                    System.out.println("Request failed. " + ex.getMessage());
+                    resultCallback.failed(ex);
+                }
+                @Override public void cancelled() { 
+                    System.out.println("Request failed.");
+                    resultCallback.cancelled();
+                }
                 @Override public void completed(final HttpResponse response) {
 
                     if (response.getStatusLine().getStatusCode() != 200) {
@@ -60,6 +66,9 @@ public class Auth {
                             result = new User(jsonObject);
                             result.setAccessToken(accessToken);
                             System.out.println("User data retrieved.");
+                            Auth.this.user = result;
+                            resultCallback.completed(Auth.this);
+
 						} catch (ParseException | IOException e) {
                             e.printStackTrace();
                             failed(e);
@@ -83,7 +92,14 @@ public class Auth {
 
     public static Auth getInstance() {
         if (instance == null) {
-            instance = new Auth();
+            instance = new Auth(null);
+        }
+        return instance;
+    }
+
+    public static Auth getInstance(FutureCallback<Auth> resultCallback) {
+        if (instance == null) {
+            instance = new Auth(resultCallback);
         }
         return instance;
     }
@@ -159,6 +175,7 @@ public class Auth {
                         prefs.put(ACCESS_TOKEN_NAME, accessToken);
                     }
                     
+                    Auth.this.user = result;
                     resultCallback.completed(result);
                 }
 
