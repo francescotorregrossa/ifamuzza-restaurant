@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-public class signupGUI extends JFrame{
+public class SignupGUI extends JFrame{
     //componenti grafici lato sinistro
     private JLabel genLabel = new JLabel("Inserisci le tue informazioni",SwingConstants.CENTER);
     private JLabel emailLabel = new JLabel("Email:",SwingConstants.RIGHT);
@@ -49,7 +49,7 @@ public class signupGUI extends JFrame{
     private JPanel panel = new JPanel();
     
 
-    public signupGUI(){
+    public SignupGUI(){
 
         super("Schermata di registrazione");
         Container c = this.getContentPane();

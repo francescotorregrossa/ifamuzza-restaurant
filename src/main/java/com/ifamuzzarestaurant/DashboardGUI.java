@@ -10,15 +10,15 @@ import com.ifamuzzarestaurant.model.Auth;
 
 import org.apache.http.concurrent.FutureCallback;
 
-public class HomeGUI extends JFrame {
+public class DashboardGUI extends JFrame {
 
     // componenti per pannello actionsPanel
-    private JButton modificaDailyButton = new JButton("<html>Modifica<br />Daily Menu</html>");
-    private JButton modificaMenuButton = new JButton("<html>Modifica<br />il menu</html>");
-    private JButton showOrdersButton = new JButton("Mostra ordini");
-    private JButton showAllOrdersButton = new JButton("<html>Mostra tutti<br />gli ordini</html>");
-    private JButton updateAccountButton = new JButton("<html>Modifica<br />Account</html>");
-    private JButton logoutButton = new JButton("Esci");
+    private JButton modificaDailyButton = new JButton("<html><p align'center'>Edit<br />daily menu</p></html>");
+    private JButton modificaMenuButton = new JButton("<html><p align'center'>Edit menu</p></html>");
+    private JButton showOrdersButton = new JButton("<html><p align'center'>Show<br />last orders</p></html>");
+    private JButton showAllOrdersButton = new JButton("<html><p align'center'>Show<br />all orders</p></html>");
+    private JButton updateAccountButton = new JButton("<html><p align'center'>Edit<br />account</p></html>");
+    private JButton logoutButton = new JButton("Logout");
     // pannelli
     private JPanel actionsPanel = new JPanel();
     private JPanel updateAccountPanel = new JPanel();
@@ -47,8 +47,8 @@ public class HomeGUI extends JFrame {
     private JButton confirmUpdate = new JButton("Conferma!");
     private JButton backButton = new JButton("Indietro");
 
-    public HomeGUI() {
-        super("Home");
+    public DashboardGUI() {
+        super("Dashboard — " + Auth.getInstance().getUser().getName());
         Container c = this.getContentPane();
         c.setLayout(new BorderLayout());
 
@@ -65,12 +65,12 @@ public class HomeGUI extends JFrame {
         actionsPanel.add(updateAccountButton);
         actionsPanel.add(logoutButton);
 
-        modificaDailyButton.setBounds(10, 20, 110, 40);
-        modificaMenuButton.setBounds(10, 80, 110, 40);
-        showOrdersButton.setBounds(10, 140, 110, 40);
-        showAllOrdersButton.setBounds(10, 200, 110, 40);
-        updateAccountButton.setBounds(10, 300, 110, 40);
-        logoutButton.setBounds(10, 350, 110, 40);
+        modificaDailyButton.setBounds(10, 20, 125, 40);
+        modificaMenuButton.setBounds(10, 80, 125, 40);
+        showOrdersButton.setBounds(10, 140, 125, 40);
+        showAllOrdersButton.setBounds(10, 200, 125, 40);
+        updateAccountButton.setBounds(10, 300, 125, 40);
+        logoutButton.setBounds(10, 350, 125, 40);
 
         //pannello daily menu
         dailyMenuPanel.setLayout(null);

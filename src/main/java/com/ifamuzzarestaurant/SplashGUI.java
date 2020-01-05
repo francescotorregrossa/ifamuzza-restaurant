@@ -33,7 +33,7 @@ public class SplashGUI extends JFrame {
             }
             @Override public void completed(Auth result) {
                 if (result.isLoggedIn()) {
-                    HomeGUI h = new HomeGUI();
+                    DashboardGUI h = new DashboardGUI();
                 }
                 else {
                     LoginGUI l = new LoginGUI();

@@ -21,11 +21,11 @@ public class LoginGUI extends JFrame{
     private JLabel passwordLabel = new JLabel("Password:");
     private JTextField emailField = new JTextField();
     private JPasswordField passwordField = new JPasswordField();
-    private JButton loginButton = new JButton("Accedi");
+    private JButton loginButton = new JButton("Log In");
     private JCheckBox mostraPasswordCheckBox = new JCheckBox();
-    private JLabel mostraPassField = new JLabel("Mostra password");
-    private JButton signupLink = new JButton("Prima volta? Registrati ora!");
-    private JLabel credenzialiErrate = new JLabel("Credenziali errate!");
+    private JLabel mostraPassField = new JLabel("Show password");
+    private JButton signupLink = new JButton("Sign Up");
+    private JLabel credenzialiErrate = new JLabel("Wrong credentials!");
 
     //variabili per pulsante accedi
     Boolean stato = true; //franco mi ha detto fai che una volta da errore una volta no quando accedi
@@ -37,7 +37,7 @@ public class LoginGUI extends JFrame{
     public LoginGUI(){
 
 
-        super("Schermata di accesso/registrazione");
+        super("Login");
         Container c = this.getContentPane();
         c.setLayout(null);
 
@@ -77,7 +77,7 @@ public class LoginGUI extends JFrame{
         mostraPasswordCheckBox.setBounds(50,120,20,20);
         mostraPassField.setBounds(75,120,120,20);
         loginButton.setBounds(50,160,100,30);
-        signupLink.setBounds(160,160,200,30);
+        signupLink.setBounds(160,160,100,30);
         credenzialiErrate.setBounds(310,55,130,25);
 
         
@@ -109,7 +109,7 @@ public class LoginGUI extends JFrame{
                     @Override public void cancelled() { System.out.println("cancellato");}
                     @Override public void completed(User result) {
                         dispose();
-                        HomeGUI h = new HomeGUI();
+                        DashboardGUI h = new DashboardGUI();
                     }
                     
                 });
@@ -152,7 +152,7 @@ public class LoginGUI extends JFrame{
         signupLink.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-                signupGUI s = new signupGUI();
+                SignupGUI s = new SignupGUI();
 			}
 		});
 
