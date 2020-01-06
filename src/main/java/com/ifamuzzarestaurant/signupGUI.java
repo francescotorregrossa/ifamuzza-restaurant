@@ -8,23 +8,23 @@ import javax.swing.border.LineBorder;
 
 public class SignupGUI extends JFrame{
     //componenti grafici lato sinistro
-    private JLabel genLabel = new JLabel("Inserisci le tue informazioni",SwingConstants.CENTER);
+    private JLabel genLabel = new JLabel("Insert your restaurant's information",SwingConstants.CENTER);
     private JLabel emailLabel = new JLabel("Email:",SwingConstants.RIGHT);
     private JTextField emailField = new JTextField();
     private JLabel passwordLabel = new JLabel("Password:",SwingConstants.RIGHT);
     private JPasswordField passwordField = new JPasswordField();
-    private JLabel confirmPasswordLabel = new JLabel("Conferma password:",SwingConstants.RIGHT);
+    private JLabel confirmPasswordLabel = new JLabel("Confirm password:",SwingConstants.RIGHT);
     private JPasswordField confirmpasswordField = new JPasswordField();
-    private JLabel telefonoLabel = new JLabel("Telefono:",SwingConstants.RIGHT);
+    private JLabel telefonoLabel = new JLabel("Phone:",SwingConstants.RIGHT);
     private JTextField telefonoField = new JTextField();
-    private JLabel nomeLabel = new JLabel("Nome locale:",SwingConstants.RIGHT);
+    private JLabel nomeLabel = new JLabel("Name:",SwingConstants.RIGHT);
     private JTextField nomeField = new JTextField();
-    private JLabel indirizzoLabel = new JLabel("Indirizzo:",SwingConstants.RIGHT);
+    private JLabel indirizzoLabel = new JLabel("Address:",SwingConstants.RIGHT);
     private JTextField indirizzoField = new JTextField();
-    private JLabel accontoLabel = new JLabel("Acconto minimo %:",SwingConstants.RIGHT);
+    private JLabel accontoLabel = new JLabel("Down payment %:",SwingConstants.RIGHT);
     Integer[] perc = new Integer[] {10,20,30,40,50,60,70,80,90};
     private JComboBox<Integer> percentualiAcconto = new JComboBox<>(perc);
-    private JButton registratiButton = new JButton("Registati");
+    private JButton registratiButton = new JButton("Create account");
     String regexEmail = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
     String regexNome= "[a-zA-Z]+";
     String regexTelefono = "[0-9]+";
@@ -33,7 +33,7 @@ public class SignupGUI extends JFrame{
 
     //componenti grafici lato destro orari
     int yComp = 0;
-    private JLabel orariMsg= new JLabel("Orari di apertura(\"hh:mm-hh:mm\")",SwingConstants.CENTER);
+    private JLabel orariMsg= new JLabel("Opening times(\"hh:mm-hh:mm\")",SwingConstants.CENTER);
     /*private JLabel lunLabel = new JLabel("Lunedi:");
     private JLabel marLabel = new JLabel("Martedi:");
     private JLabel merLabel = new JLabel("Mercoledi:");
@@ -43,7 +43,7 @@ public class SignupGUI extends JFrame{
     private JLabel domLabel = new JLabel("Domenica:");*/
     private JLabel[] giorniLabel = new JLabel[7];
     private JTextField[] giorniFields = new JTextField[7];
-    private String[] giorni = new String[]{"Lunedi:","Martedi:", "Mercoledi:", "Giovedi:", "Venerdi:", "Sabato:", "Domenica:"};
+    private String[] giorni = new String[]{"Monday:","Tuesday:", "Wednesday:", "Thursday:", "Friday:", "Saturday:", "Sunday:"};
 
 
     private JPanel panel = new JPanel();
@@ -51,7 +51,7 @@ public class SignupGUI extends JFrame{
 
     public SignupGUI(){
 
-        super("Schermata di registrazione");
+        super("Sign Up");
         Container c = this.getContentPane();
         c.setLayout(new BorderLayout());
         panel.setLayout(null);
@@ -110,7 +110,7 @@ public class SignupGUI extends JFrame{
         telefonoField.setBounds(140,200,150,25);
         indirizzoField.setBounds(140,240,150,25);
         percentualiAcconto.setBounds(140,280,150,25);
-        registratiButton.setBounds(230,340,100,30);
+        registratiButton.setBounds(230,340,200,30);
 
         //disposizione elementi grafici destra orari
         orariMsg.setBounds(350,10,230,25);

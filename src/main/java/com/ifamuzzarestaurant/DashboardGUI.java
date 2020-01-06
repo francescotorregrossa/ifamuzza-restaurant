@@ -28,24 +28,24 @@ public class DashboardGUI extends JFrame {
 
     // componenti per il pannello updateAccountPanel che entra in gioco quando premi
     // "Modifica Account"
-    private JLabel genLabel = new JLabel("MODIFICA DATI:");
+    private JLabel genLabel = new JLabel("Edit your information:");
     private JLabel emailLabel = new JLabel("Email:", SwingConstants.RIGHT);
     private JTextField emailField = new JTextField();
-    private JLabel passwordLabel = new JLabel("Nuova password:", SwingConstants.RIGHT);
+    private JLabel passwordLabel = new JLabel("New password:", SwingConstants.RIGHT);
     private JPasswordField passwordField = new JPasswordField();
-    private JLabel confirmPasswordLabel = new JLabel("Conferma password:", SwingConstants.RIGHT);
+    private JLabel confirmPasswordLabel = new JLabel("Confirm password:", SwingConstants.RIGHT);
     private JPasswordField confirmpasswordField = new JPasswordField();
-    private JLabel telefonoLabel = new JLabel("Telefono:", SwingConstants.RIGHT);
+    private JLabel telefonoLabel = new JLabel("Phone:", SwingConstants.RIGHT);
     private JTextField telefonoField = new JTextField();
-    private JLabel nomeLabel = new JLabel("Nome locale:", SwingConstants.RIGHT);
+    private JLabel nomeLabel = new JLabel("Name:", SwingConstants.RIGHT);
     private JTextField nomeField = new JTextField();
-    private JLabel indirizzoLabel = new JLabel("Indirizzo:", SwingConstants.RIGHT);
+    private JLabel indirizzoLabel = new JLabel("Address:", SwingConstants.RIGHT);
     private JTextField indirizzoField = new JTextField();
-    private JLabel accontoLabel = new JLabel("Acconto minimo %:", SwingConstants.RIGHT);
+    private JLabel accontoLabel = new JLabel("Down payment %:", SwingConstants.RIGHT);
     Integer[] perc = new Integer[] { 10, 20, 30, 40, 50, 60, 70, 80, 90 };
     private JComboBox<Integer> percentualiAcconto = new JComboBox<>(perc);
-    private JButton confirmUpdate = new JButton("Conferma!");
-    private JButton backButton = new JButton("Indietro");
+    private JButton confirmUpdate = new JButton("Update profile");
+    private JButton backButton = new JButton("Back");
 
     public DashboardGUI() {
         super("Dashboard — " + Auth.getInstance().getUser().getName());
@@ -113,7 +113,7 @@ public class DashboardGUI extends JFrame {
         telefonoField.setBounds(140, 200, 150, 25);
         indirizzoField.setBounds(140, 240, 150, 25);
         percentualiAcconto.setBounds(140, 280, 150, 25);
-        confirmUpdate.setBounds(350, 380, 100, 30);
+        confirmUpdate.setBounds(320, 380, 150, 30);
         backButton.setBounds(240, 380, 100, 30);
 
         // pannello Logout
