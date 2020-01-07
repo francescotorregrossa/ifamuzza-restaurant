@@ -105,7 +105,10 @@ public class LoginGUI extends JFrame{
 
                 Auth.getInstance().login(userEmail, userPassword, new FutureCallback<User>(){
                 
-                    @Override public void failed(Exception ex) { System.out.println("errore " + ex.getMessage()); }
+                    @Override public void failed(Exception ex) { 
+                        System.out.println("errore " + ex.getMessage());
+                        credenzialiErrate.setVisible(true);
+                    }
                     @Override public void cancelled() { System.out.println("cancellato");}
                     @Override public void completed(User result) {
                         dispose();
