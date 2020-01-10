@@ -46,28 +46,7 @@ public class User implements Validable, JsonPrivateSerialization {
     
         setPhone(getString(data, "phone"));
         setDownPayment(getInt(data, "downPayment"));
-        
-        /*
-        if (receiptMethod != null) {
-            String type = getString(receiptMethod, "type");
-            if (type == null) {
-                setReceiptMethod(new Invalid());
-            }
-            else {
-                switch (type) {
-                case "banktransfer":
-                    setReceiptMethod(new BankTransfer(receiptMethod));
-                    break;
-                case "paypal":
-                    setReceiptMethod(new PayPal(receiptMethod));
-                    break;
-                default:
-                    setReceiptMethod(new Invalid());
-                    break;
-                }
-            }
-        }
-        */
+
     }
 
     @Override

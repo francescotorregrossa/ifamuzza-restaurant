@@ -28,7 +28,7 @@ public class LoginGUI extends JFrame{
     private JLabel credenzialiErrate = new JLabel("Wrong credentials!");
 
     //variabili per pulsante accedi
-    Boolean stato = true; //franco mi ha detto fai che una volta da errore una volta no quando accedi
+    Boolean stato = true;
     String userEmail;
     String userPassword;
     StringBuilder sb = new StringBuilder();
@@ -40,17 +40,6 @@ public class LoginGUI extends JFrame{
         super("Login");
         Container c = this.getContentPane();
         c.setLayout(null);
-
-
-        /*border che uso per capire la grandezza dei componenti
-        Border border = LineBorder.createGrayLineBorder();
-        emailLabel.setBorder(border);
-        passwordLabel.setBorder(border);
-        emailField.setBorder(border);
-        passwordField.setBorder(border);
-        loginButton.setBorder(border); 
-        signupLink.setBorderPainted(false);
-        loginButton.setBorderPainted(false);*/
 
 
         //inserisco i componenti grafici nel container
@@ -116,23 +105,6 @@ public class LoginGUI extends JFrame{
                     }
                     
                 });
-
-                /*
-                if(stato == true){
-                    userEmail = emailField.getText();
-                    userPassword = sb.append(passwordField.getPassword()).toString();
-                    credenzialiErrate.setVisible(false);
-                    System.out.println("TRUE");
-                    HomeGUI h = new HomeGUI();
-                    
-                }
-                else{
-                    credenzialiErrate.setVisible(true);
-                    System.out.println("FALSE");
-                }
-
-                stato = !stato;
-                */
 						
 			}
         });
@@ -155,6 +127,7 @@ public class LoginGUI extends JFrame{
         signupLink.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+                dispose();
                 SignupGUI s = new SignupGUI();
 			}
 		});

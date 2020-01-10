@@ -3,8 +3,17 @@ package com.ifamuzzarestaurant;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+
+import com.ifamuzzarestaurant.model.Auth;
+import com.ifamuzzarestaurant.model.BankTransfer;
+import com.ifamuzzarestaurant.model.ReceiptMethod;
+import com.ifamuzzarestaurant.model.User;
+
+import org.apache.http.concurrent.FutureCallback;
 
 public class SignupGUI extends JFrame{
     //componenti grafici lato sinistro
@@ -22,28 +31,24 @@ public class SignupGUI extends JFrame{
     private JLabel indirizzoLabel = new JLabel("Address:",SwingConstants.RIGHT);
     private JTextField indirizzoField = new JTextField();
     private JLabel accontoLabel = new JLabel("Down payment %:",SwingConstants.RIGHT);
-    Integer[] perc = new Integer[] {10,20,30,40,50,60,70,80,90};
+    Integer[] perc = new Integer[] {0,10,20,30,40,50,60,70,80,90,100};
     private JComboBox<Integer> percentualiAcconto = new JComboBox<>(perc);
+    private JLabel ibanLabel = new JLabel("IBAN:",SwingConstants.RIGHT);
+    private JTextField ibanField = new JTextField();
     private JButton registratiButton = new JButton("Create account");
-    String regexEmail = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
-    String regexNome= "[a-zA-Z]+";
-    String regexTelefono = "[0-9]+";
-    Boolean validSignup = true; 
+    private JLabel errorLabel = new JLabel("",SwingConstants.CENTER);
 
+    //variabili per pulsante registrati    
+    StringBuilder sb1 = new StringBuilder();
+    StringBuilder sb2 = new StringBuilder();
 
     //componenti grafici lato destro orari
     int yComp = 0;
     private JLabel orariMsg= new JLabel("Opening times(\"hh:mm-hh:mm\")",SwingConstants.CENTER);
-    /*private JLabel lunLabel = new JLabel("Lunedi:");
-    private JLabel marLabel = new JLabel("Martedi:");
-    private JLabel merLabel = new JLabel("Mercoledi:");
-    private JLabel gioLabel = new JLabel("Giovedi:");
-    private JLabel venLabel = new JLabel("Venerdi:");
-    private JLabel sabLabel = new JLabel("Sabato:");
-    private JLabel domLabel = new JLabel("Domenica:");*/
     private JLabel[] giorniLabel = new JLabel[7];
     private JTextField[] giorniFields = new JTextField[7];
     private String[] giorni = new String[]{"Monday:","Tuesday:", "Wednesday:", "Thursday:", "Friday:", "Saturday:", "Sunday:"};
+    private String[] giorniShort = new String[]{"mon","tue", "wed", "thu", "fri", "sat", "sun"};
 
 
     private JPanel panel = new JPanel();
@@ -73,15 +78,11 @@ public class SignupGUI extends JFrame{
         panel.add(indirizzoField);
         panel.add(accontoLabel);
         panel.add(percentualiAcconto);
+        panel.add(ibanLabel);
+        panel.add(ibanField);
         panel.add(registratiButton);
         panel.add(orariMsg);
-        /*panel.add(lunLabel);
-        panel.add(marLabel);
-        panel.add(merLabel);
-        panel.add(gioLabel);
-        panel.add(venLabel);
-        panel.add(sabLabel);
-        panel.add(domLabel);*/
+        panel.add(errorLabel);
 
         for(int i = 0; i<7;i++){
             giorniLabel[i] = new JLabel(giorni[i]);
@@ -92,8 +93,6 @@ public class SignupGUI extends JFrame{
         }
         
 
-
-
         //disposizione elementi grafici sinistra
         genLabel.setBounds(50,10,230,25);
         emailLabel.setBounds(50,40,80,25);
@@ -103,6 +102,7 @@ public class SignupGUI extends JFrame{
         telefonoLabel.setBounds(50, 200,80 ,25);
         indirizzoLabel.setBounds(50,240,80,25);
         accontoLabel.setBounds(10,280,120,25);
+        ibanLabel.setBounds(50,320,80,25);
         emailField.setBounds(140,40,150,25);
         passwordField.setBounds(140,80,150,25);
         confirmpasswordField.setBounds(140,120,150,25);
@@ -110,17 +110,12 @@ public class SignupGUI extends JFrame{
         telefonoField.setBounds(140,200,150,25);
         indirizzoField.setBounds(140,240,150,25);
         percentualiAcconto.setBounds(140,280,150,25);
-        registratiButton.setBounds(230,340,200,30);
+        ibanField.setBounds(140,320,250,25);
+        errorLabel.setBounds(160,360,340,30);
+        registratiButton.setBounds(230,400,200,30);
 
         //disposizione elementi grafici destra orari
         orariMsg.setBounds(350,10,230,25);
-        /*lunLabel.setBounds(350,40,80,25);
-        marLabel.setBounds(350,80,80,25);
-        merLabel.setBounds(350,120,80,25);
-        gioLabel.setBounds(350,160,80,25);
-        venLabel.setBounds(350,200,80,25);
-        sabLabel.setBounds(350,240,80,25);
-        domLabel.setBounds(350,280,80,25);*/
         
         for(int i = 0; i<7;i++){
             yComp = yComp+40;
@@ -132,32 +127,53 @@ public class SignupGUI extends JFrame{
         registratiButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent event){
-                /*email
-                if(!emailField.getText().matches(regexEmail)){
-                    validSignup = false;
-                    emailField.setForeground(Color.RED);
-                    emailField.setText("Email non valida!");
-                }
 
-                //nome
-                if(!nomeField.getText().matches(regexNome)){
-                    validSignup = false;
-                    nomeField.setForeground(Color.RED);
-                    nomeField.setText("Nome non valido");
-                }
+                errorLabel.setText("");
+                String p1 = sb1.append(passwordField.getPassword()).toString();
+                String p2 = sb2.append(confirmpasswordField.getPassword()).toString();
 
-                //telefono
-                if(!telefonoField.getText().matches(regexTelefono)){
-                    telefonoField.setForeground(Color.RED);
-                    telefonoField.setText("Numero non valido");
-                }*/
-                if(validSignup == true){
-                    System.out.println("True");
+                if (!p1.equals(p2)) {
+                    errorLabel.setText("<html><font color='red'>passwords must be identical</font></html>");
+                    return;
                 }
-                else{
-                    System.out.println("False");
+                else {
+                    User u = new User();
+                    u.setEmail(emailField.getText());
+                    u.setPassword(p1);
+                    u.setName(nomeField.getText());
+                    u.setPhone(telefonoField.getText());
+                    u.setAddress(indirizzoField.getText());
+                    u.setDownPayment(Integer.valueOf(String.valueOf(percentualiAcconto.getSelectedItem())));
+
+                    ArrayList<String> openingTimes = new ArrayList<>();
+                    for (int i = 0; i < giorni.length; i++) {
+                        JTextField giorno = giorniFields[i];
+                        if (!giorno.getText().equals("")) {
+                            openingTimes.add(giorniShort[i] + " " + giorno.getText());
+                        }
+                    }
+                    u.setOpeningTime(openingTimes.toArray(new String[1]));
+                    
+                    BankTransfer r = new BankTransfer();
+                    r.setHolder(nomeField.getText());
+                    r.setAddress(indirizzoField.getText());
+                    r.setIBAN(ibanField.getText());
+                    u.setReceiptMethod(r);
+
+                    Auth.getInstance().signup(u, new FutureCallback<User>(){
+                    
+                        @Override public void failed(Exception ex) {
+                            ex.printStackTrace();
+                            errorLabel.setText("<html><font color='red'>" + ex.getMessage() + "</font></html>");
+                        }
+                        @Override public void cancelled() { System.out.println("error"); }
+                        @Override public void completed(User result) {
+                            dispose();
+                            DashboardGUI h = new DashboardGUI();
+                        }
+                        
+                    });
                 }
-                validSignup = !validSignup;
                 				
 			}
         });
@@ -195,6 +211,7 @@ public class SignupGUI extends JFrame{
                         }
                     }
                 });
+
 
         //settaggi per il frame
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

@@ -202,7 +202,7 @@ public class Auth {
         
     }
 
-    public void signup(User user, String password, FutureCallback<User> resultCallback) {
+    public void signup(User user, FutureCallback<User> resultCallback) {
      
         prefs.remove(ACCESS_TOKEN_NAME);
 
